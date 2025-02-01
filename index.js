@@ -1,5 +1,6 @@
 const readline = require('readline-sync');
-const FlashcardSystem = require('./modules/FlashcardSystem');
+const FlashcardSystem = require('./backend/modules/FlashcardSystem');
+const ProgressTracker = require('./backend/modules/ProgressTracker');
 const words = require('./data/words.json');
 
 // Get unique categories from words.json
@@ -8,7 +9,6 @@ const categories = [...new Set(words.map(word => word.category))];
 function selectCategory() {
     console.log('📚 Select a Category:');
 
-    // Display categories with numbers (e.g., 1. Greetings, 2. Numbers...)
     categories.forEach((category, index) => {
         console.log(`${index + 1}. ${category}`);
     });
@@ -17,22 +17,23 @@ function selectCategory() {
 
     if (choice < 0 || choice >= categories.length) {
         console.log('All Categories Selected');
-        return words; // Fallback to all words
+        return words;
     }
 
     const selectedCategory = categories[choice];
     console.log(`\nSelected category: ${selectedCategory}\n`);
 
-    // Filter words by selected category
     return words.filter(word => word.category === selectedCategory);
 }
 
 function startFlashcards() {
     while (true) {
-        const filteredWords = selectCategory(); // Get words for chosen category
+        const filteredWords = selectCategory();
         const flashcards = new FlashcardSystem(filteredWords);
 
         console.log("🚀 Lithuanian Flashcards Mode 🚀\n");
+
+        let score = 0;
 
         while (true) {
             const currentWord = flashcards.showNext();
@@ -45,13 +46,18 @@ function startFlashcards() {
             const isCorrect = flashcards.checkAnswer(currentWord.lithuanian, userAnswer);
 
             if (isCorrect) {
-                console.log("✅ Correct!\n");
+                console.log("✅ Correct! (+10 points)\n");
+                score += 10;
+                ProgressTracker.updateProgress(currentWord.category, currentWord.lithuanian, 10);
             } else {
-                console.log(`❌ Wrong! The answer is "${currentWord.translation}"\n`);
+                console.log(`❌ Wrong! The answer is "${currentWord.translation}". (-5 points)\n`);
+                score -= 5;
+                ProgressTracker.updateProgress(currentWord.category, currentWord.lithuanian, -5);
             }
         }
 
-        // Ask if the user wants to retry
+        console.log(`Total Score: ${ProgressTracker.getTotalScore()} points 🏆\n`);
+
         const retry = readline.question("Do you want to choose another category? (yes/no): ").toLowerCase();
         if (retry !== 'yes') {
             console.log("Thanks for practicing! 👏");
