@@ -1,0 +1,47 @@
+[
+    { "lithuanian": "Labas rytas", "translation": "Good morning", "category": "Greetings" },
+    { "lithuanian": "Laba diena", "translation": "Good afternoon", "category": "Greetings" },
+    { "lithuanian": "Labas vakaras", "translation": "Good evening", "category": "Greetings" },
+    { "lithuanian": "Kaip sekasi?", "translation": "How are you?", "category": "Greetings" },
+    { "lithuanian": "Viso gero", "translation": "Goodbye", "category": "Greetings" },
+
+    { "lithuanian": "Vienas", "translation": "One", "category": "Numbers" },
+    { "lithuanian": "Du", "translation": "Two", "category": "Numbers" },
+    { "lithuanian": "Trys", "translation": "Three", "category": "Numbers" },
+    { "lithuanian": "Keturi", "translation": "Four", "category": "Numbers" },
+    { "lithuanian": "Penki", "translation": "Five", "category": "Numbers" },
+    { "lithuanian": "Šeši", "translation": "Six", "category": "Numbers" },
+    { "lithuanian": "Septyni", "translation": "Seven", "category": "Numbers" },
+    { "lithuanian": "Aštuoni", "translation": "Eight", "category": "Numbers" },
+    { "lithuanian": "Devyni", "translation": "Nine", "category": "Numbers" },
+    { "lithuanian": "Dešimt", "translation": "Ten", "category": "Numbers" },
+
+    { "lithuanian": "Mama", "translation": "Mother", "category": "Family" },
+    { "lithuanian": "Tėtis", "translation": "Father", "category": "Family" },
+    { "lithuanian": "Brolis", "translation": "Brother", "category": "Family" },
+    { "lithuanian": "Sesuo", "translation": "Sister", "category": "Family" },
+    { "lithuanian": "Vaikas", "translation": "Child", "category": "Family" },
+
+    { "lithuanian": "Raudona", "translation": "Red", "category": "Colors" },
+    { "lithuanian": "Mėlyna", "translation": "Blue", "category": "Colors" },
+    { "lithuanian": "Žalia", "translation": "Green", "category": "Colors" },
+    { "lithuanian": "Geltona", "translation": "Yellow", "category": "Colors" },
+    { "lithuanian": "Juoda", "translation": "Black", "category": "Colors" },
+
+    { "lithuanian": "Pirmadienis", "translation": "Monday", "category": "Days" },
+    { "lithuanian": "Antradienis", "translation": "Tuesday", "category": "Days" },
+    { "lithuanian": "Trečiadienis", "translation": "Wednesday", "category": "Days" },
+    { "lithuanian": "Ketvirtadienis", "translation": "Thursday", "category": "Days" },
+    { "lithuanian": "Penktadienis", "translation": "Friday", "category": "Days" },
+
+    { "lithuanian": "Cepelinai", "translation": "Potato dumplings", "category": "Food" },
+    { "lithuanian": "Kugelis", "translation": "Potato pudding", "category": "Food" },
+    { "lithuanian": "Šakotis", "translation": "Tree cake", "category": "Food" },
+    { "lithuanian": "Varškėčiai", "translation": "Curd pancakes", "category": "Food" },
+
+    { "lithuanian": "Valgyti", "translation": "To eat", "category": "Verbs" },
+    { "lithuanian": "Gerti", "translation": "To drink", "category": "Verbs" },
+    { "lithuanian": "Miegoti", "translation": "To sleep", "category": "Verbs" },
+    { "lithuanian": "Skaityti", "translation": "To read", "category": "Verbs" },
+    { "lithuanian": "Bėgti", "translation": "To run", "category": "Verbs" }
+]
