@@ -11,14 +11,26 @@
 </head>
 <body>
     <div class="container">
-        <h2>Translate this word:</h2>
+        <div class="header">
+            <select id="category-selector">
+                <option value="all">All Categories</option>
+            </select>
+            <span class="progress">Progress: <span id="progress-count">0</span>/<span id="total-words">0</span></span>
+        </div>
+        
+        <h4>Translate:</h4>
         <div id="word-display" class="word-card">Loading...</div>
+        
+        <h4>Pronunciation:</h4>
+        <div id="pronunciation" class="pronunciation-text">---</div>
+        
         <input type="text" id="user-input" placeholder="Enter translation...">
-        <button id="submit-btn">Submit</button>
+        <div class="button-group">
+            <button id="prev-btn">Previous</button>
+            <button id="submit-btn">Submit</button>
+        </div>
         <p id="feedback"></p>
-        <div class="progress">Progress: <span id="progress-count">0</span>/<span id="total-words">0</span></div>
     </div>
-    <script src="./script.js">
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

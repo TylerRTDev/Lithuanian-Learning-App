@@ -1,69 +1,106 @@
-document.addEventListener("DOMContentLoaded", () => {
-    let words = [];
-    let index = 0;
-    let progress = 0;
+let words = [];
+let filteredWords = [];
+let index = 0;
+let previousIndex = -1;
+let progress = {};
 
-    async function fetchWords() {
-        try {
-            const response = await fetch('http://localhost:5000/api/words');
-            words = await response.json();
-            document.getElementById('total-words').textContent = words.length;
-            displayWord();
-        } catch (error) {
-            console.error('Error fetching words:', error);
-        }
+async function fetchWords() {
+    try {
+        const response = await fetch('http://localhost:5000/api/words');
+        words = await response.json();
+        words = shuffleArray(words); // Shuffle words
+        populateCategories();
+        filterWords();
+    } catch (error) {
+        console.error('Error fetching words:', error);
+    }
+}
+
+function shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+function populateCategories() {
+    const categorySelector = document.getElementById('category-selector');
+    const categories = [...new Set(words.map(word => word.category))];
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categorySelector.appendChild(option);
+    });
+}
+
+function filterWords() {
+    const selectedCategory = document.getElementById('category-selector').value;
+    filteredWords = selectedCategory === "all" ? words : words.filter(word => word.category === selectedCategory);
+    index = 0;
+    if (!progress[selectedCategory]) {
+        progress[selectedCategory] = 0;
+    }
+    updateProgress();
+    displayWord();
+}
+
+function displayWord() {
+    if (filteredWords.length === 0) {
+        document.getElementById('word-display').textContent = "No words available";
+        document.getElementById('pronunciation').textContent = "---";
+        return;
+    }
+    document.getElementById('word-display').textContent = filteredWords[index].lithuanian;
+    document.getElementById('pronunciation').textContent = filteredWords[index].pronunciation;
+}
+
+function updateProgress() {
+    const selectedCategory = document.getElementById('category-selector').value;
+    document.getElementById('progress-count').textContent = progress[selectedCategory] || 0;
+    document.getElementById('total-words').textContent = filteredWords.length;
+}
+
+function goToPreviousWord() {
+    if (previousIndex >= 0) {
+        index = previousIndex;
+        displayWord();
+    }
+}
+
+async function checkAnswer() {
+    const userInput = document.getElementById('user-input').value.trim();
+    if (!filteredWords.length) return;
+
+    const response = await fetch('http://localhost:5000/api/check-answer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lithuanian: filteredWords[index].lithuanian, answer: userInput })
+    });
+
+    const result = await response.json();
+    const feedbackElement = document.getElementById('feedback');
+    const selectedCategory = document.getElementById('category-selector').value;
+
+    if (result.correct) {
+        feedbackElement.textContent = '✅ Correct!';
+        progress[selectedCategory]++;
+    } else {
+        feedbackElement.textContent = `❌ Incorrect! The correct answer is "${result.correctAnswer}"`;
     }
 
-    function displayWord() {
-        if (words.length === 0) {
-            document.getElementById('word-display').textContent = "No words available";
-            return;
-        }
-        document.getElementById('word-display').textContent = words[index]?.lithuanian || "No words available";
-    }
-
-    async function checkAnswer() {
-        const userInput = document.getElementById('user-input').value.trim();
-
-        if (!words.length) {
-            console.error("No words loaded yet.");
-            return;
-        }
-
-        const response = await fetch('http://localhost:5000/api/check-answer', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                lithuanian: words[index]?.lithuanian,
-                answer: userInput
-            })
-        });
-
-        const result = await response.json();
-        const feedbackElement = document.getElementById('feedback');
-
-        if (result.correct) {
-            feedbackElement.textContent = '✅ Correct!';
-            progress++;
+    updateProgress();
+    previousIndex = index;
+    setTimeout(() => {
+        feedbackElement.textContent = '';
+        document.getElementById('user-input').value = '';
+        if (index < filteredWords.length - 1) {
+            index++;
         } else {
-            feedbackElement.textContent = `❌ Incorrect! The correct answer is "${result.correctAnswer}"`;
+            index = 0;
         }
+        displayWord();
+    }, 1500);
+}
 
-        document.getElementById('progress-count').textContent = progress;
-
-        setTimeout(() => {
-            feedbackElement.textContent = '';
-            document.getElementById('user-input').value = '';
-            if (index < words.length - 1) {
-                index++;
-            } else {
-                index = 0;
-                progress = 0;
-            }
-            displayWord();
-        }, 1500);
-    }
-
-    document.getElementById('submit-btn').addEventListener('click', checkAnswer);
-    fetchWords();
-});
+document.getElementById('submit-btn').addEventListener('click', checkAnswer);
+document.getElementById('prev-btn').addEventListener('click', goToPreviousWord);
+document.getElementById('category-selector').addEventListener('change', filterWords);
+window.onload = fetchWords;
