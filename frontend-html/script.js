@@ -4,6 +4,16 @@ let index = 0;
 let previousIndex = -1;
 let progress = {};
 
+async function loadPage(page) {
+    const response = await fetch(`pages/${page}.html`);
+    document.getElementById("app").innerHTML = await response.text();
+
+    if (page === "translate" || page === "practice") {
+        await fetchWords();
+        setupEventListeners();
+    }
+}
+
 async function fetchWords() {
     try {
         const response = await fetch('http://localhost:5000/api/words');
@@ -50,6 +60,8 @@ function displayWord() {
     }
     document.getElementById('word-display').textContent = filteredWords[index].lithuanian;
     document.getElementById('pronunciation').textContent = filteredWords[index].pronunciation;
+    document.getElementById('translation').textContent = filteredWords[index].translation;
+    document.getElementById('category-heading').textContent = filteredWords[index].category;
 }
 
 function updateProgress() {
@@ -59,11 +71,21 @@ function updateProgress() {
 }
 
 function goToPreviousWord() {
-    if (previousIndex >= 0) {
-        index = previousIndex;
+    if (index >= 0) {
+        index--;
         displayWord();
     }
 }
+
+function goToNextWord() {
+    if (index < filteredWords.length - 1) {
+        index++;
+    } else {
+        index = 0;
+    }
+    displayWord();
+}
+
 
 async function checkAnswer() {
     const userInput = document.getElementById('user-input').value.trim();
@@ -100,7 +122,22 @@ async function checkAnswer() {
     }, 1500);
 }
 
-document.getElementById('submit-btn').addEventListener('click', checkAnswer);
-document.getElementById('prev-btn').addEventListener('click', goToPreviousWord);
-document.getElementById('category-selector').addEventListener('change', filterWords);
-window.onload = fetchWords;
+// Load the main page on startup
+window.onload = () => loadPage("practice");
+
+
+function setupEventListeners() {
+    if (document.getElementById('submit-btn')) {
+        document.getElementById('submit-btn').addEventListener('click', checkAnswer);
+    }
+    if (document.getElementById('prev-btn')) {
+        document.getElementById('prev-btn').addEventListener('click', goToPreviousWord);
+    }
+    if (document.getElementById('next-btn')) {
+        document.getElementById('next-btn').addEventListener('click', goToNextWord);
+    }
+    if (document.getElementById('category-selector')) {
+        document.getElementById('category-selector').addEventListener('change', filterWords);
+    }
+}
+
