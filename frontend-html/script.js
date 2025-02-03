@@ -123,7 +123,7 @@ async function checkAnswer() {
 }
 
 // Load the main page on startup
-window.onload = () => loadPage("practice");
+window.onload = () => loadPage("main");
 
 
 function setupEventListeners() {

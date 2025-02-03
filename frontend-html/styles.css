@@ -4,35 +4,28 @@ body {
     font-family: Yatra One, sans-serif;
     height: 100vh;
     background-color: #f4f4f4;
-    margin: 0;
 }
 .top-nav {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
 }
-
 .main-container {
-    display: flex;
-    justify-content: space-evenly;
+    top: 50%;
 }
 .container {
     display: flex;
     flex-direction: column;
-    margin: 1rem;
     background: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 40%;
 }
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .category-select {
-    width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -52,7 +45,7 @@ body {
 }
 h3, h4 {
     text-decoration: underline;
-    margin: 0.3rem;
+    margin: 0.3rem auto;
 }
 input {
     width: 100%;
@@ -65,6 +58,7 @@ input {
 }
 .back-button {
     display: flex;
+    align-items: center;
     max-width: 25%;
     max-height: 25%;
     color: black;
@@ -76,16 +70,17 @@ input {
     cursor: pointer;
 }
 .button {
+    font-family: Yatra One, sans-serif;
     box-sizing: border-box;
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
-    width: 100%;
+    padding: 5px;
     cursor: pointer;
     border-radius: 5px;
 }
 .button:hover {
+    font-family: Yatra One, sans-serif;
     background-color: #0056b3;
 }
 .progress {
@@ -101,5 +96,5 @@ input {
     margin-top: 10px;
 }
 .button-group button {
-    width: 48%;
+    width: 45%;
 }
