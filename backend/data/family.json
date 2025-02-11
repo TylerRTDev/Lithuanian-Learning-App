@@ -1,0 +1,7 @@
+[
+    { "lithuanian": "Mama", "translation": "Mother", "category": "Family", "pronunciation": "MAH-mah" },
+    { "lithuanian": "Tėtis", "translation": "Father", "category": "Family", "pronunciation": "TEH-tis" },
+    { "lithuanian": "Brolis", "translation": "Brother", "category": "Family", "pronunciation": "BROH-lis" },
+    { "lithuanian": "Sesuo", "translation": "Sister", "category": "Family", "pronunciation": "SEH-soo-oh" },
+    { "lithuanian": "Vaikas", "translation": "Child", "category": "Family", "pronunciation": "VAI-kahs" }
+]

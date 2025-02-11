@@ -1,0 +1,7 @@
+[
+    { "lithuanian": "Labas rytas", "translation": "Good morning", "category": "Greetings", "pronunciation": "LAH-bahs REE-tahs" },
+    { "lithuanian": "Laba diena", "translation": "Good afternoon", "category": "Greetings", "pronunciation": "LAH-bah dee-EH-nah" },
+    { "lithuanian": "Labas vakaras", "translation": "Good evening", "category": "Greetings", "pronunciation": "LAH-bahs VAH-kah-rahs" },
+    { "lithuanian": "Kaip sekasi?", "translation": "How are you?", "category": "Greetings", "pronunciation": "KAI-p SEH-kah-see?" },
+    { "lithuanian": "Viso gero", "translation": "Goodbye", "category": "Greetings", "pronunciation": "VEE-soh GEH-roh" }
+]

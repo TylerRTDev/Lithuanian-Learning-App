@@ -1,0 +1,7 @@
+[
+    { "lithuanian": "Pirmadienis", "translation": "Monday", "category": "Days", "pronunciation": "peer-MAH-dyeh-nees" },
+    { "lithuanian": "Antradienis", "translation": "Tuesday", "category": "Days", "pronunciation": "ahn-TRAH-dyeh-nees" },
+    { "lithuanian": "Trečiadienis", "translation": "Wednesday", "category": "Days", "pronunciation": "treh-CHAH-dyeh-nees" },
+    { "lithuanian": "Ketvirtadienis", "translation": "Thursday", "category": "Days", "pronunciation": "ket-VEERT-ah-dyeh-nees" },
+    { "lithuanian": "Penktadienis", "translation": "Friday", "category": "Days", "pronunciation": "penk-TAH-dyeh-nees" }
+]

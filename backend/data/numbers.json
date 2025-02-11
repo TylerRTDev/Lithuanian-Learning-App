@@ -1,0 +1,12 @@
+[
+    { "lithuanian": "Vienas", "translation": "One", "category": "Numbers", "pronunciation": "VYEH-nahs" },
+{ "lithuanian": "Du", "translation": "Two", "category": "Numbers", "pronunciation": "DOO" },
+{ "lithuanian": "Trys", "translation": "Three", "category": "Numbers", "pronunciation": "TREES" },
+{ "lithuanian": "Keturi", "translation": "Four", "category": "Numbers", "pronunciation": "keh-TOO-ree" },
+{ "lithuanian": "Penki", "translation": "Five", "category": "Numbers", "pronunciation": "PEHN-kee" },
+{ "lithuanian": "Šeši", "translation": "Six", "category": "Numbers", "pronunciation": "SHEH-shee" },
+{ "lithuanian": "Septyni", "translation": "Seven", "category": "Numbers", "pronunciation": "sep-TEE-nee" },
+{ "lithuanian": "Aštuoni", "translation": "Eight", "category": "Numbers", "pronunciation": "ahsh-too-OH-nee" },
+{ "lithuanian": "Devyni", "translation": "Nine", "category": "Numbers", "pronunciation": "deh-VEE-nee" },
+{ "lithuanian": "Dešimt", "translation": "Ten", "category": "Numbers", "pronunciation": "DEH-shimt" }
+]

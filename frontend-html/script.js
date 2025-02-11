@@ -15,16 +15,20 @@ async function loadPage(page) {
 }
 
 async function fetchWords() {
+    const selectedCategory = document.getElementById('category-selector').value;
+    const category = selectedCategory === "all" ? "all" : selectedCategory;
+
     try {
-        const response = await fetch('http://localhost:5000/api/words');
+        const response = await fetch(`http://localhost:5000/api/words/${category}`);
         words = await response.json();
-        words = shuffleArray(words); // Shuffle words
+        words = shuffleArray(words);
         populateCategories();
         filterWords();
     } catch (error) {
         console.error('Error fetching words:', error);
     }
 }
+
 
 function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -55,7 +59,8 @@ function filterWords() {
 function displayWord() {
     if (filteredWords.length === 0) {
         document.getElementById('word-display').textContent = "No words available";
-        document.getElementById('pronunciation').textContent = "---";
+        document.getElementById('pronunciation').textContent = "Unavailable";
+        document.getElementById('translation').textContent = "Unavailable";
         return;
     }
     document.getElementById('word-display').textContent = filteredWords[index].lithuanian;
